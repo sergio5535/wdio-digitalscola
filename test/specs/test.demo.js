@@ -15,19 +15,24 @@ describe('Test Saucedemo', () => {
         const checkItem1 = await $('#item_4_title_link');
         const checkItem2 = await $('#item_0_title_link');
 
+        // login
         await usernameTextBox.addValue('standard_user');
         await passwordTextBox.addValue('secret_sauce');
         await loginButton.click();
 
+        // validate user on home page
         await expect(browser).toHaveUrl("https://www.saucedemo.com/inventory.html");
         await expect(browser).toHaveTitle("Swag Labs");
 
+        // add product to cart
         await cartButton1.click();
         await cartButton2.click();
 
+        // go to cart page
         await goToCartPage.click();
         await expect(browser).toHaveUrl("https://www.saucedemo.com/cart.html");
 
+        // validate product added to cart page
         await expect(checkItem1).toBeDisplayed();
         await expect(checkItem2).toBeDisplayed();
 
